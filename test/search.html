@@ -1,0 +1,82 @@
+<html>
+<head>
+  <title>Search</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ <body>
+  <form method="POST" action="#">
+   <input type="text" name="q" id="name" placeholder="Enter query"/>
+   <input type="button" name="search" id="submit" value="Search" data-toggle="modal" data-target="#mymodal">
+   </form>
+
+
+
+ <!-- The Modal -->
+<div class="modal" id="mymodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+ </body>
+
+ <script type="text/javascript">  
+  
+        // Ajax post  
+        $(document).ready(function(){  
+        $("#submit").click(function(){  
+        var name = $("#name").val();  
+         // Returns error message when submitted without req fields.  
+        if(name=='')  
+        {  
+        alert("error");  
+        }  
+        else  
+        {  
+        // AJAX Code To Submit Form.  
+        $.ajax({  
+        type: "POST",  
+        url:  "http://localhost:8079/test/search.php",  
+        data: {name: name},  
+        cache: false,  
+        success: function(result){  
+            if(result!=0){
+				console.log(result);
+                // On success redirect.  
+            $('#mymodal').modal('show');
+			$('#mymodal:visible .modal-content .modal-body').html(result);	
+            }  
+            else { 
+               //error
+				alert("error");
+			   }
+        }  
+        });  
+        }  
+        return false;  
+        });  
+        });  
+ </script> 
+ 
+  </html>
