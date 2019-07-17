@@ -1,7 +1,7 @@
 // Send an SMS using Twilio's REST API and PHP
 <?php
-$sid = ""; // Your Account SID from www.twilio.com/console
-$token = ""; // Your Auth Token from www.twilio.com/console
+$sid = "sasa"; // Your Account SID from www.twilio.com/console
+$token = "2dd2"; // Your Auth Token from www.twilio.com/console
 require_once 'Twilio/autoload.php';
 
 $client = new Twilio\Rest\Client($sid, $token);
